@@ -2,9 +2,6 @@ package com.carrito_compra.proyecto.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
 @Entity
 @Table(name = "shopping_cart")
@@ -20,16 +17,26 @@ public class ItemCarrito {
     @JoinColumn(name = "idProducto")
     private Producto producto;
 
+    @Column(name = "codUsuario", length = 128)
+    private String codUsuario;
+
     @Column(name = "cantidad")
     private int cantidad;
 
-    public ItemCarrito(Long id, Producto producto, int cantidad) {
-        setId(id);
-        setProducto(producto);
-        setCantidad(cantidad);
-
+    public ItemCarrito() {
     }
 
-    public ItemCarrito() {
+    public ItemCarrito(Long id, Producto producto, int cantidad) {
+        this.id = id;
+        this.producto = producto;
+        this.cantidad = cantidad;
+    }
+
+    public ItemCarrito(Long id, Producto producto,
+                       String codUsuario, int cantidad) {
+        this.id = id;
+        this.producto = producto;
+        this.codUsuario = codUsuario;
+        this.cantidad = cantidad;
     }
 }
